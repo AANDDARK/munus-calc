@@ -1,6 +1,6 @@
 
 'use client'
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, } from "react"
 import { Button } from "@/components/ui/button"
 
 export default function Component() {
@@ -39,8 +39,9 @@ export default function Component() {
     chars.pop();
     console.log(chars)
     const modifiedString = chars.join('');
-    varieble == modifiedString
-    return varieble
+    varieble == modifiedString;
+    return (varieble)
+    setChangeValue(!changeValue)
     }
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background">
@@ -48,7 +49,7 @@ export default function Component() {
         <div className="bg-card-foreground rounded-md p-4 mb-4">
           <input
             type="text"
-            className="bg-transparent text-right text-2xl font-bold w-full focus:outline-none"
+            className="bg-transparent text-right text-2xl font-bold text-white w-full focus:outline-none"
             readOnly
             value={value}
           />
@@ -93,14 +94,11 @@ export default function Component() {
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(0)}>
             0
           </Button>
-          <Button variant="outline" className="text-2xl font-bold">
-            .
-          </Button>
-          <Button variant="outline" className="text-2xl font-bold text-primary">
+          <Button variant="outline" className="text-2xl col-span-2 font-bold text-primary">
             +
           </Button>
-          <Button variant="outline" className="text-2xl font-bold text-primary">
-            =
+          <Button variant="outline" className="text-2xl font-bold">
+            .
           </Button>
           <Button className="col-span-2" onClick={clickUpdateValue}>calculate</Button>
           <Button className="col-span-2" onClick={() => remove(value)}>{"<="}</Button>
