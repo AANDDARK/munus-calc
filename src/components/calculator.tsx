@@ -2,46 +2,49 @@
 'use client'
 import { useRef, useState, useEffect, } from "react"
 import { Button } from "@/components/ui/button"
+import { log } from "console"
 
 export default function Component() {
     let [value, setValue] = useState(String)
     const [changeValue, setChangeValue] = useState(false)
-    const number = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
     useEffect(() => {
         setValue(value)
-        console.log(value)
-    }, [changeValue])
-    const func = [function add(a: number, b: number){
-        return a + b;
-    },
+    }, [changeValue]);
+    function add(){
+        let numbers = value.split(' ');
+        numbers = convertValuesToNumbers(numbers)
+        return numbers
+    }
     function subtract(a: number, b: number){
         return a - b
-    },
+    }
     function multiply(a: number, b: number){
         return a * b
-    },
+    }
     function divide(a: number, b: number){
         return a / b
     }
-        ]
-
     function calculate(){
          
     }
     function addValue(number: number): void{
-      setValue(value + number + '')
+      setValue(value + number);
+    }
+    function addDo( dos: string){
+      setValue(value + ' ' + dos + ' ');
     }
     function clickUpdateValue(){
         setChangeValue(!changeValue);
+        console.log(add()) 
     }
-    function remove(varieble: string, ){
-    let chars = varieble.split("");
-    chars.pop();
-    console.log(chars)
-    const modifiedString = chars.join('');
-    varieble == modifiedString;
-    return (varieble)
-    setChangeValue(!changeValue)
+    function remove(){
+      setValue(value.slice(0, -1))
+      return value
+    }
+    function convertValuesToNumbers(someArray: Array<any>){
+      someArray[0] == Number(someArray[0]);
+      someArray[2] == Number(someArray[2]);
+      return someArray
     }
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background">
@@ -64,7 +67,7 @@ export default function Component() {
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(9)}>
             9
           </Button>
-          <Button variant="outline" className="text-2xl font-bold text-primary">
+          <Button variant="outline" className="text-2xl font-bold text-primary" onClick={() => addDo('/')}>
             /
           </Button>
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(4)}>
@@ -76,7 +79,7 @@ export default function Component() {
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(6)}>
             6
           </Button>
-          <Button variant="outline" className="text-2xl font-bold text-primary">
+          <Button variant="outline" className="text-2xl font-bold text-primary" onClick={() => addDo('*')}>
             *
           </Button>
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(1)}>
@@ -88,20 +91,20 @@ export default function Component() {
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(3)}>
             3
           </Button>
-          <Button variant="outline" className="text-2xl font-bold text-primary">
+          <Button variant="outline" className="text-2xl font-bold text-primary" onClick={() => addDo('-')}>
             -
           </Button>
           <Button variant="outline" className="text-2xl font-bold" onClick={() => addValue(0)}>
             0
           </Button>
-          <Button variant="outline" className="text-2xl col-span-2 font-bold text-primary">
+          <Button variant="outline" className="text-2xl col-span-2 font-bold text-primary" onClick={() => addDo('+')}>
             +
           </Button>
           <Button variant="outline" className="text-2xl font-bold">
             .
           </Button>
           <Button className="col-span-2" onClick={clickUpdateValue}>calculate</Button>
-          <Button className="col-span-2" onClick={() => remove(value)}>{"<="}</Button>
+          <Button className="col-span-2" onClick={() => remove()}>{"<="}</Button>
         </div>
       </div>
     </div>
