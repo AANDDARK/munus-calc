@@ -11,9 +11,10 @@ export default function Component() {
         setValue(value)
     }, [changeValue]);
     function add(){
-        let numbers = value.split(' ');
-        numbers = convertValuesToNumbers(numbers)
-        return numbers
+        let numbers: any = value.split(' ');
+        numbers[0] = Number(numbers[0])
+        numbers[2] = Number(numbers[2])
+        return numbers[0] + numbers[2]
     }
     function subtract(a: number, b: number){
         return a - b
@@ -37,14 +38,12 @@ export default function Component() {
         setChangeValue(!changeValue);
         console.log(add()) 
     }
+    function addSymbol(symbol: any){
+      setValue(value + symbol);
+    }
     function remove(){
       setValue(value.slice(0, -1))
       return value
-    }
-    function convertValuesToNumbers(someArray: Array<any>){
-      someArray[0] == Number(someArray[0]);
-      someArray[2] == Number(someArray[2]);
-      return someArray
     }
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background">
@@ -100,7 +99,7 @@ export default function Component() {
           <Button variant="outline" className="text-2xl col-span-2 font-bold text-primary" onClick={() => addDo('+')}>
             +
           </Button>
-          <Button variant="outline" className="text-2xl font-bold">
+          <Button variant="outline" className="text-2xl font-bold" onClick={() => addSymbol('.')}>
             .
           </Button>
           <Button className="col-span-2" onClick={clickUpdateValue}>calculate</Button>
