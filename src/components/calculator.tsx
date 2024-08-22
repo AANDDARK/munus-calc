@@ -36,11 +36,12 @@ export default function Calculator() {
     const animationHandleClick = () => {
         return new Promise((resolve) => {
           gsap.to(removeButtonRef.current, {
-            x: '40vw',
+            x: '20vw',
             opacity: 0,
             duration: 0.5,
             ease: 'power2.out',
-            onComplete: resolve 
+            onComplete: resolve,
+            transformOrigin: 'center center',
           });
         });
       };
@@ -51,7 +52,8 @@ export default function Calculator() {
             opacity: 2,
             duration: 1,
             ease: 'power4.out',
-            onComplete: resolve 
+            onComplete: resolve,
+            transformOrigin: 'center center',
           });
         });
       };
