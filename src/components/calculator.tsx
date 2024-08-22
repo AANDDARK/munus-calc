@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { gsap } from "gsap";
-import { useGSAP } from '@gsap/react';
+
 
 
 export default function Calculator() {
     const [value, setValue] = useState<string>('');
     const [changeValue, setChangeValue] = useState<boolean>(false);   
+    const removeButtonRef = useRef(null)
+    const [reverse, setReverse] = useState(false)
      useEffect(() => {
         setValue(value);
     }, [changeValue]);
@@ -31,7 +33,28 @@ export default function Calculator() {
         let numbers = array.map(Number);
         return numbers[0] / numbers[2];
     }
-
+    const animationHandleClick = () => {
+        return new Promise((resolve) => {
+          gsap.to(removeButtonRef.current, {
+            x: '40vw',
+            opacity: 0,
+            duration: 0.5,
+            ease: 'power2.out',
+            onComplete: resolve 
+          });
+        });
+      };
+      const reverseAnimationHandleClick = () => {
+        return new Promise((resolve) => {
+          gsap.to(removeButtonRef.current, {
+            x: 0,
+            opacity: 2,
+            duration: 1,
+            ease: 'power4.out',
+            onComplete: resolve 
+          });
+        });
+      };
     function calculate() {
         const calc = value.split(' ');
                
@@ -70,15 +93,24 @@ export default function Calculator() {
     function remove() {
         setValue(value.slice(0, -1));
     }
-    function removeAll(){
-        setValue("")
-    }
-
+    const removeAll = async () => {
+        setValue(""); 
+        setReverse(!reverse); 
+        await animationHandleClick(); 
+        await new Promise(resolve => setTimeout(resolve, 10)); 
+        await reverseAnimationHandleClick(); 
+      };
+    
+      useEffect(() => {
+        if (reverse) {
+          removeAll();
+        }
+      }, [reverse]);
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-background">
             <div className="bg-card rounded-lg shadow-lg p-6 w-full max-w-md">
                 <div className="flex justify-start place-content-end pb-2 ">
-                <Button  onClick={() => removeAll()} variant="outline"><FontAwesomeIcon icon={faArrowRight} /></Button>
+                <Button  onClick={() => removeAll()} variant="outline"  ref={removeButtonRef}><FontAwesomeIcon icon={faArrowRight}  /></Button>
                 </div>
                 <div className="bg-card-foreground rounded-md p-4 mb-4">
                     <input
