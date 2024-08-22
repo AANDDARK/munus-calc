@@ -2,21 +2,21 @@
 import { useRef, useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react';
+
 
 export default function Calculator() {
     const [value, setValue] = useState<string>('');
-    const [changeValue, setChangeValue] = useState<boolean>(false);
-
-    useEffect(() => {
+    const [changeValue, setChangeValue] = useState<boolean>(false);   
+     useEffect(() => {
         setValue(value);
     }, [changeValue]);
-
     function add(array: string[]) {
         let numbers = array.map(Number);
         return numbers[0] + numbers[2];
     }
-
     function subtract(array: string[]) {
         let numbers = array.map(Number);
         return numbers[0] - numbers[2];
@@ -77,8 +77,8 @@ export default function Calculator() {
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-background">
             <div className="bg-card rounded-lg shadow-lg p-6 w-full max-w-md">
-                <div className="flex justify-start place-content-end pb-2">
-                <Button onClick={() => removeAll()} variant="outline"><FontAwesomeIcon icon={faArrowRight} /></Button>
+                <div className="flex justify-start place-content-end pb-2 ">
+                <Button  onClick={() => removeAll()} variant="outline"><FontAwesomeIcon icon={faArrowRight} /></Button>
                 </div>
                 <div className="bg-card-foreground rounded-md p-4 mb-4">
                     <input
