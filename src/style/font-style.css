@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemonada:wght@300..700&display=swap');
+
+.number-spec{
+    font-family: "Lemonada", cursive;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
