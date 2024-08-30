@@ -67,3 +67,20 @@
     @apply bg-background text-foreground;
   }
 }
+.combobox-container {
+  width: 200px;
+  margin: 20px;
+}
+
+.select__control {
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.select__option {
+  padding: 10px;
+}
+
+.select__menu {
+  border: 1px solid #ddd;
+}
