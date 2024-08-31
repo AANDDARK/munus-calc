@@ -54,20 +54,6 @@ export default function indexSpeed(){
         if(whtChange == "speed" && first == 3){
             setTime(Time + value)
         }
-        if(whtChange == "speed" && first == 0){
-            setDistance(value)
-            setFirst(1)
-        }
-        if(whtChange == "speed" && first == 1){
-            setDistance(distance + value)
-        }
-        if(whtChange == "speed" && first == 2){
-            setTime(value)
-            setFirst(3)
-        }
-        if(whtChange == "speed" && first == 3){
-            setTime(Time + value)
-        }
         if(whtChange == "distance" && first == 0){
             setSpeed(value)
             setFirst(1)
@@ -111,6 +97,7 @@ export default function indexSpeed(){
                 handleReset()
             }
     };
+    
     return (<>
     <div className="flex flex-col items-center justify-center h-screen bg-background">
         <div className="bg-card rounded-lg shadow-lg p-6 w-full max-w-md mt-2">
